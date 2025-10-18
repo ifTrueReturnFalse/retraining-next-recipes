@@ -5,4 +5,23 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.hero {
+  font-family: var(--font-anton);
+  color: #FFD15B;
+  font-size: 44px;
+  font-weight: 400;
+  text-align: center;
 }
