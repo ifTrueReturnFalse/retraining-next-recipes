@@ -1,6 +1,6 @@
 .container {
   min-width: 1440px;
-  height: 670px;
+  min-height: 670px;
   background-image: url("/images/header_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,0 +1,67 @@
+.card {
+  width: 380px;
+  min-height: 730px;
+  border-radius: 21px;
+  background-color: white;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 21px 21px 0 0;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 21px 21px 0 0;
+}
+
+.recipeTextContainer {
+  padding: 20px 30px;
+}
+
+.recipeTitle {
+  font-family: var(--font-anton);
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.subTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 9%;
+  color: #7A7A7A;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+  max-height: 125px;
+  overflow: auto;
+}
+
+.ingredientGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ingredientAmount {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+}
