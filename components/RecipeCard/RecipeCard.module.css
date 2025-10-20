@@ -3,6 +3,8 @@
   min-height: 730px;
   border-radius: 21px;
   background-color: white;
+  text-decoration: none;
+  color: inherit;
 }
 
 .imageContainer {

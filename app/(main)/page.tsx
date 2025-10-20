@@ -21,6 +21,7 @@ export default function Home() {
             recipeName={recipe.name}
             recipeDescription={recipe.description}
             ingredientsList={recipe.ingredients}
+            slug={recipe.slug}
           />
         ))}
       </div>

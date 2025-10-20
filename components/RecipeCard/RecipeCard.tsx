@@ -2,12 +2,14 @@ import Image from "next/image";
 import { Ingredient } from "@/app/lib/definitions";
 import { formatIngredientDisplay } from "@/app/lib/utils";
 import styles from "./RecipeCard.module.css";
+import Link from "next/link";
 
 interface RecipeCardProps {
   imageSource: string;
   recipeName: string;
   recipeDescription: string;
   ingredientsList: Ingredient[];
+  slug: string;
 }
 
 export default function RecipeCard({
@@ -15,9 +17,10 @@ export default function RecipeCard({
   recipeName,
   recipeDescription,
   ingredientsList,
+  slug,
 }: RecipeCardProps) {
   return (
-    <div className={styles.card}>
+    <Link href={`/recipe/${slug}`} className={styles.card}>
       <div className={styles.imageContainer}>
         <Image
           src={`/images/recipes/${imageSource}`}
@@ -46,6 +49,6 @@ export default function RecipeCard({
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

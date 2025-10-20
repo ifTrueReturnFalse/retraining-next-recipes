@@ -6,3 +6,7 @@ export function formatIngredientDisplay(ingredient: Ingredient): string {
   const rawDisplay = quantity + unit;
   return rawDisplay === "" ? "-" : rawDisplay;
 }
+
+export function capitalize(string: string): string {
+  return String(string).charAt(0).toUpperCase() + String(string).slice(1);
+}
