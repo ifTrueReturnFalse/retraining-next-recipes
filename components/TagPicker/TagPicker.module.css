@@ -70,19 +70,26 @@
   padding: 0 15px;
 }
 
+.tagFiltered:hover {
+  font-weight: 700;
+}
+
 .filteredTagButton {
   width: 17px;
   height: 17px;
   border-radius: 50%;
   outline: none;
   border: none;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: black;
   cursor: pointer;
 }
 
+.tagFiltered:hover .filteredTagButton {
+  display: flex;
+}
 .filteredTagButton svg {
   height: 9px;
   width: 9px;
