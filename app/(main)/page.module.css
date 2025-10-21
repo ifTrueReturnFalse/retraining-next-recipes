@@ -4,6 +4,12 @@
   background-color: #EDEDED;
 }
 
+.tagPickerContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
 .recipeGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

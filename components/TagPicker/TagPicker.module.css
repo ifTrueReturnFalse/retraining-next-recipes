@@ -1,0 +1,111 @@
+.container {
+  background-color: white;
+  width: 195px;
+  height: 55px;
+  border-radius: 11px;
+  transition: all ease-in-out 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.openContainer {
+  height: 315px;
+}
+
+.alwaysDisplayedPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  padding: 0 15px;
+  flex-shrink: 0;
+}
+
+.tagPickerName {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.arrowButton {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.imageTurn {
+  transform: rotate(-180deg);
+}
+
+.collapsibleContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tagFilteredList {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.tagFiltered {
+  background-color: #FFD15B;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 37px;
+  padding: 0 15px;
+}
+
+.filteredTagButton {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  cursor: pointer;
+}
+
+.filteredTagButton svg {
+  height: 9px;
+  width: 9px;
+}
+
+.filteredTagButton svg * {
+  stroke: #FFD15B;
+}
+
+.tagList {
+  overflow-y: auto;
+  margin-top: 20px;
+  padding: 0 15px;
+  list-style: none;
+  flex-grow: 1;
+}
+
+.listElement {
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.listElement:not(:last-child) {
+  margin-bottom: 10px;
+}
