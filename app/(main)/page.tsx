@@ -22,6 +22,7 @@ export default function Home() {
             recipeDescription={recipe.description}
             ingredientsList={recipe.ingredients}
             slug={recipe.slug}
+            time={recipe.time}
           />
         ))}
       </div>

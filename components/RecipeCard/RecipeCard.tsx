@@ -10,6 +10,7 @@ interface RecipeCardProps {
   recipeDescription: string;
   ingredientsList: Ingredient[];
   slug: string;
+  time: number;
 }
 
 export default function RecipeCard({
@@ -18,9 +19,12 @@ export default function RecipeCard({
   recipeDescription,
   ingredientsList,
   slug,
+  time,
 }: RecipeCardProps) {
   return (
     <Link href={`/recipe/${slug}`} className={styles.card}>
+      <div className={styles.timeHint}>{`${time}min`}</div>
+
       <div className={styles.imageContainer}>
         <Image
           src={`/images/recipes/${imageSource}`}

@@ -5,6 +5,7 @@
   background-color: white;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .imageContainer {
@@ -17,6 +18,18 @@
 .image {
   object-fit: cover;
   border-radius: 21px 21px 0 0;
+}
+
+.timeHint {
+  position: absolute;
+  background-color: #FFD15B;
+  z-index: 1;
+  top: 15px;
+  right: 15px;
+  border-radius: 14px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .recipeTextContainer {
