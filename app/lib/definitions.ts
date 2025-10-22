@@ -16,3 +16,5 @@ export interface Recipe {
   appliance: string;
   ustensils: string[];
 }
+
+export type TagCategory = "ingredient" | "appliance" | "ustensil";
