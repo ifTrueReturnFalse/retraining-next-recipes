@@ -116,3 +116,32 @@
 .listElement:not(:last-child) {
   margin-bottom: 10px;
 }
+
+.tagSelectionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 195px;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.tagSelected {
+  background-color: #FFD15B;
+  height: 53px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+
+.removeSelectedTag {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.removeSelectedTag svg * {
+  stroke: black;
+}
