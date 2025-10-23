@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import { useSearchRecipe } from "../hooks/useSearchRecipe";
 import { useAvailableTags } from "../hooks/useAvailableTags";
 import { useTagManagement } from "../hooks/useTagManagement";
+import { useSearch } from "../contexts/SearchContext";
 
 const MAX_RECIPE_TO_DISPLAY = 12;
 
@@ -41,11 +42,14 @@ export default function Home() {
     removeTag: removeUstensilTag,
   } = useTagManagement();
 
+  const { searchText } = useSearch();
+
   const filteredRecipes = useSearchRecipe({
     recipes: recipesData,
     selectedIngredients,
     selectedAppliances,
     selectedUstensils,
+    searchText,
   });
 
   const tagPickerConfig = [
@@ -121,7 +125,9 @@ export default function Home() {
           ))}
         </div>
 
-        <div className={styles.recipesNumber}>{`${recipesNumber} recettes`}</div>
+        <div
+          className={styles.recipesNumber}
+        >{`${recipesNumber} recettes`}</div>
       </div>
 
       <div className={styles.recipeGrid}>

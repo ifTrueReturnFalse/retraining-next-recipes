@@ -1,4 +1,5 @@
 import HeaderSearch from "@/components/Headers/HeaderSearch/HeaderSearch";
+import { SearchProvider } from "../contexts/SearchContext";
 
 export default function Layout({
   children,
@@ -7,8 +8,10 @@ export default function Layout({
 }>) {
   return (
     <>
-      <HeaderSearch />
-      <main>{children}</main>
+      <SearchProvider>
+        <HeaderSearch />
+        <main>{children}</main>
+      </SearchProvider>
     </>
   );
 }

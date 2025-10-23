@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 import { Recipe, Ingredient } from "../lib/definitions";
+import { normalizeText } from "../lib/utils";
 
 interface useSearchRecipeProps {
   recipes: Recipe[];
   selectedIngredients: string[];
   selectedUstensils: string[];
   selectedAppliances: string[];
+  searchText: string;
 }
 
 export function useSearchRecipe({
@@ -13,17 +15,18 @@ export function useSearchRecipe({
   selectedIngredients,
   selectedUstensils,
   selectedAppliances,
+  searchText,
 }: useSearchRecipeProps): Recipe[] {
   const filteredRecipes = useMemo(() => {
     const selectedIngredientsSet = new Set(
-      selectedIngredients.map((tag) => tag.toLowerCase().trim())
+      selectedIngredients.map(normalizeText)
     );
-    const selectedUstensilsSet = new Set(
-      selectedUstensils.map((tag) => tag.toLowerCase().trim())
-    );
+    const selectedUstensilsSet = new Set(selectedUstensils.map(normalizeText));
     const selectedAppliancesSet = new Set(
-      selectedAppliances.map((tag) => tag.toLowerCase().trim())
+      selectedAppliances.map(normalizeText)
     );
+
+    const normalizedSearchText = normalizeText(searchText);
 
     const checkIngredients = (
       ingredients: Ingredient[],
@@ -32,7 +35,7 @@ export function useSearchRecipe({
       if (selectedIngredientsSet.size === 0) return true;
 
       const ingredientNamesSet = new Set(
-        ingredients.map((ing) => ing.ingredient.toLowerCase().trim())
+        ingredients.map((ing) => normalizeText(ing.ingredient))
       );
 
       for (const selectedIngredient of selectedIngredientsSet) {
@@ -50,9 +53,7 @@ export function useSearchRecipe({
     ): boolean => {
       if (selectedUstensilsSet.size === 0) return true;
 
-      const ustensilNamesSet = new Set(
-        ustensils.map((ustensil) => ustensil.toLowerCase().trim())
-      );
+      const ustensilNamesSet = new Set(ustensils.map(normalizeText));
 
       for (const selectedUstensil of selectedUstensilsSet) {
         if (!ustensilNamesSet.has(selectedUstensil)) {
@@ -63,9 +64,45 @@ export function useSearchRecipe({
       return true;
     };
 
+    const checkText = (
+      textToCheck: string,
+      normalizedSearchText: string
+    ): boolean => {
+      return normalizeText(textToCheck).includes(normalizedSearchText);
+    };
+
+    const checkIngredientsWithSearchText = (
+      ingredients: Ingredient[],
+      normalizedSearchText: string
+    ) => {
+      for (const ingredient of ingredients) {
+        if (
+          normalizeText(ingredient.ingredient).includes(normalizedSearchText)
+        ) {
+          return true;
+        }
+      }
+      return false;
+    };
+
     return recipes.filter((recipe) => {
+      if (searchText.length > 2) {
+        const matchesName = checkText(recipe.name, normalizedSearchText);
+        const matchesDescription = checkText(
+          recipe.description,
+          normalizedSearchText
+        );
+        const matchesIngredients = checkIngredientsWithSearchText(
+          recipe.ingredients,
+          normalizedSearchText
+        );
+        if (!matchesName && !matchesDescription && !matchesIngredients) {
+          return false;
+        }
+      }
+
       if (selectedAppliancesSet.size > 0) {
-        if (!selectedAppliancesSet.has(recipe.appliance.toLowerCase().trim())) {
+        if (!selectedAppliancesSet.has(normalizeText(recipe.appliance))) {
           return false;
         }
       }
@@ -84,7 +121,13 @@ export function useSearchRecipe({
 
       return true;
     });
-  }, [selectedAppliances, selectedIngredients, selectedUstensils, recipes]);
+  }, [
+    selectedAppliances,
+    selectedIngredients,
+    selectedUstensils,
+    searchText,
+    recipes,
+  ]);
 
   return filteredRecipes;
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useSearch } from "@/app/contexts/SearchContext";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const isCrossVisible = searchQuery.length > 0;
+  const { setSearchText, inputValue, setInputValue } = useSearch();
+  const isCrossVisible = inputValue.length > 0;
 
   return (
     <div className={styles.searchBarContainer}>
@@ -15,8 +15,8 @@ export default function SearchBar() {
         id=""
         className={styles.searchBar}
         placeholder="Rechercher une recette, un ingrédient,..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
 
       <div className={styles.buttonsContainer}>
@@ -24,7 +24,7 @@ export default function SearchBar() {
           <button
             type="button"
             className={styles.cross}
-            onClick={() => setSearchQuery("")}
+            onClick={() => setSearchText("")}
             aria-label="Effacer la recherche"
           >
             <svg
