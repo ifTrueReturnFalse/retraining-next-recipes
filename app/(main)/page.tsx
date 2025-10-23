@@ -101,21 +101,27 @@ export default function Home() {
     MAX_RECIPE_TO_DISPLAY
   );
 
+  const recipesNumber = filteredRecipes.length;
+
   return (
     <div className={styles.container}>
-      <div className={styles.tagPickerContainer}>
-        {tagPickerConfig.map((picker) => (
-          <TagPicker
-            key={picker.category}
-            tagPickerName={picker.name}
-            availableTags={picker.availableTags}
-            searchText={picker.searchText}
-            setSearchText={picker.setSearchText}
-            selectedTags={picker.selectedTags}
-            addTag={picker.addTag}
-            removeTag={picker.removeTag}
-          />
-        ))}
+      <div className={styles.upperRecipeSection}>
+        <div className={styles.tagPickerContainer}>
+          {tagPickerConfig.map((picker) => (
+            <TagPicker
+              key={picker.category}
+              tagPickerName={picker.name}
+              availableTags={picker.availableTags}
+              searchText={picker.searchText}
+              setSearchText={picker.setSearchText}
+              selectedTags={picker.selectedTags}
+              addTag={picker.addTag}
+              removeTag={picker.removeTag}
+            />
+          ))}
+        </div>
+
+        <div className={styles.recipesNumber}>{`${recipesNumber} recettes`}</div>
       </div>
 
       <div className={styles.recipeGrid}>

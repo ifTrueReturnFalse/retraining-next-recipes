@@ -1,13 +1,31 @@
 .container {
   height: 100%;
   width: 100%;
-  background-color: #EDEDED;
+  background-color: #ededed;
+}
+
+.upperRecipeSection {
+  display: flex;
+  flex-direction: row;
+  width: 1250px;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 0 20px;
+  padding-top: 40px;
+  margin-bottom: 40px;
 }
 
 .tagPickerContainer {
   display: flex;
   flex-direction: row;
   gap: 30px;
+}
+
+.recipesNumber {
+  font-size: 21px;
+  font-family: var(--font-anton);
+  font-weight: 400;
 }
 
 .recipeGrid {
@@ -17,4 +35,5 @@
   width: 1250px;
   margin: auto;
   row-gap: 50px;
+  padding-bottom: 40px;
 }
