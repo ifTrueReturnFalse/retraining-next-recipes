@@ -29,26 +29,38 @@ export function useSearchRecipe({
       ingredients: Ingredient[],
       selectedIngredientsSet: Set<string>
     ): boolean => {
-      for (const ingredient of ingredients) {
-        if (
-          selectedIngredientsSet.has(ingredient.ingredient.toLowerCase().trim())
-        ) {
-          return true;
+      if (selectedIngredientsSet.size === 0) return true;
+
+      const ingredientNamesSet = new Set(
+        ingredients.map((ing) => ing.ingredient.toLowerCase().trim())
+      );
+
+      for (const selectedIngredient of selectedIngredientsSet) {
+        if (!ingredientNamesSet.has(selectedIngredient)) {
+          return false;
         }
       }
-      return false;
+
+      return true;
     };
 
     const checkUstensils = (
       ustensils: string[],
       selectedUstensilsSet: Set<string>
     ): boolean => {
-      for (const ustensil of ustensils) {
-        if (selectedUstensilsSet.has(ustensil.toLowerCase().trim())) {
-          return true;
+      if (selectedUstensilsSet.size === 0) return true;
+
+      const ustensilNamesSet = new Set(
+        ustensils.map((ustensil) => ustensil.toLowerCase().trim())
+      );
+
+      for (const selectedUstensil of selectedUstensilsSet) {
+        if (!ustensilNamesSet.has(selectedUstensil)) {
+          return false;
         }
       }
-      return false;
+
+      return true;
     };
 
     return recipes.filter((recipe) => {
