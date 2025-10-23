@@ -5,43 +5,41 @@ import recipes from "@/app/data/recipes.json";
 import { Recipe } from "../lib/definitions";
 import styles from "./page.module.css";
 import TagPicker from "@/components/TagPicker/TagPicker";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useSearchRecipe } from "../hooks/useSearchRecipe";
 import { useAvailableTags } from "../hooks/useAvailableTags";
+import { useTagManagement } from "../hooks/useTagManagement";
 
 const MAX_RECIPE_TO_DISPLAY = 12;
 
 export default function Home() {
   const recipesData = useMemo(() => recipes as Recipe[], []);
   //Ingredients
-  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
-  const [ingredientSearch, setIngredientSearch] = useState("");
-  const addIngredientTag = (tag: string) => {
-    setSelectedIngredients((prev) => [...new Set([...prev, tag])]);
-  };
-  const removeIngredientTag = (tag: string) => {
-    setSelectedIngredients((prev) => prev.filter((t) => t != tag));
-  };
+  const {
+    selectedTags: selectedIngredients,
+    searchText: ingredientSearch,
+    setSearchText: setIngredientSearch,
+    addTag: addIngredientTag,
+    removeTag: removeIngredientTag,
+  } = useTagManagement();
 
   //Appliances
-  const [selectedAppliances, setSelectedAppliances] = useState<string[]>([]);
-  const [appliancesSearch, setAppliancesSearch] = useState("");
-  const addApplianceTag = (tag: string) => {
-    setSelectedAppliances((prev) => [...new Set([...prev, tag])]);
-  };
-  const removeApplianceTag = (tag: string) => {
-    setSelectedAppliances((prev) => prev.filter((t) => t != tag));
-  };
+  const {
+    selectedTags: selectedAppliances,
+    searchText: appliancesSearch,
+    setSearchText: setAppliancesSearch,
+    addTag: addApplianceTag,
+    removeTag: removeApplianceTag,
+  } = useTagManagement();
 
   //Ustensils
-  const [selectedUstensils, setSelectedUstensils] = useState<string[]>([]);
-  const [ustensilsSearch, setUstensilsSearch] = useState("");
-  const addUstensilTag = (tag: string) => {
-    setSelectedUstensils((prev) => [...new Set([...prev, tag])]);
-  };
-  const removeUstensilTag = (tag: string) => {
-    setSelectedUstensils((prev) => prev.filter((t) => t != tag));
-  };
+  const {
+    selectedTags: selectedUstensils,
+    searchText: ustensilsSearch,
+    setSearchText: setUstensilsSearch,
+    addTag: addUstensilTag,
+    removeTag: removeUstensilTag,
+  } = useTagManagement();
 
   const filteredRecipes = useSearchRecipe({
     recipes: recipesData,
