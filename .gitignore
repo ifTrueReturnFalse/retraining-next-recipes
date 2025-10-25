@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Massive recipes images 
-/public/images/recipes
+/public/images/recipes/*

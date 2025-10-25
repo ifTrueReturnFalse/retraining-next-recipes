@@ -11,8 +11,8 @@ interface RecipePageProps {
   };
 }
 
-export default function RecipePage({ params }: RecipePageProps) {
-  const { slug } = params;
+export default async function RecipePage({ params }: RecipePageProps) {
+  const { slug } = await params;
   const recipe = (recipesData as Recipe[]).find(
     (recipe) => recipe.slug === slug
   );
@@ -28,6 +28,8 @@ export default function RecipePage({ params }: RecipePageProps) {
           src={`/images/recipes/${recipe.image}`}
           alt="Recipe image. Delicious !"
           fill
+          sizes="50vw"
+          priority={true}
           className={styles.image}
         />
       </div>
